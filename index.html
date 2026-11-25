@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wokok VPN: свой VPN, который не блокируется</title>
+<meta name="description" content="Приложения Wokok VPN для Windows, macOS, Android, iOS и расширение для Chrome. VLESS Reality, SSH-резерв, умная маршрутизация. Открытый код.">
+<meta property="og:title" content="Wokok VPN: вок для вашего трафика">
+<meta property="og:description" content="Свой VPN на своём сервере. Windows, macOS, Android, iOS, Chrome.">
+<meta property="og:image" content="https://arsenikt.github.io/WokokVPN/img/banner.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/logo.png">
+<style>
+:root{--bg:#0e0b0a;--bg2:#1b1614;--card:#241d1a;--paper:#f6ead2;--fire:#ff7a1a;--chili:#e5341b;--gold:#ffd23f;--muted:#a8978a;--line:rgba(255,255,255,.1)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--paper);font:16px/1.6 "Segoe UI",system-ui,-apple-system,sans-serif}
+a{color:var(--gold)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);background:rgba(14,11,10,.72);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:18px;height:60px}
+nav .brand{display:flex;align-items:center;gap:10px;font:900 18px "Segoe UI Black","Arial Black",sans-serif;color:var(--paper);text-decoration:none}
+nav .brand img{width:32px;height:32px}
+nav .sp{flex:1}
+nav a.l{color:var(--muted);text-decoration:none;font-size:14px}
+nav a.l:hover{color:var(--paper)}
+.lang{border:1px solid var(--line);background:none;color:var(--muted);border-radius:8px;padding:4px 10px;cursor:pointer;font:inherit;font-size:13px}
+.hero{position:relative;text-align:center;padding:64px 0 40px;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(40% 32% at 50% 14%,rgba(255,110,30,.32),transparent 70%),radial-gradient(70% 40% at 50% 100%,rgba(229,52,27,.16),transparent 70%),linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px) 0 0/48px 48px;-webkit-mask:linear-gradient(#000 60%,transparent);mask:linear-gradient(#000 60%,transparent)}
+.hero>.wrap{position:relative}
+.logo{width:170px;filter:drop-shadow(0 0 22px rgba(255,122,26,.4));animation:bob 4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-7px);filter:drop-shadow(0 0 32px rgba(255,140,40,.6))}}
+h1{font:900 clamp(38px,7vw,74px)/1.02 "Segoe UI Black","Arial Black",sans-serif;margin:14px 0 10px;letter-spacing:-1px}
+h1 span{background:linear-gradient(135deg,var(--chili),var(--fire),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{font-size:clamp(17px,2.2vw,21px);opacity:.9;max-width:680px;margin:0 auto 28px}
+.cta{display:inline-flex;align-items:center;gap:12px;padding:15px 28px;border-radius:14px;font-weight:800;font-size:18px;text-decoration:none;color:#fff;background:linear-gradient(135deg,var(--chili),var(--fire));box-shadow:0 12px 36px rgba(255,90,30,.4);transition:.2s}
+.cta:hover{transform:translateY(-2px);box-shadow:0 16px 44px rgba(255,90,30,.55)}
+.cta small{display:block;font-weight:500;font-size:12.5px;opacity:.85}
+.alt{margin-top:14px;color:var(--muted);font-size:14px}
+.badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.badges span{border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:999px;padding:4px 12px;font-size:13px;color:var(--muted)}
+section{padding:46px 0}
+h2{font:800 clamp(26px,4vw,36px)/1.15 "Segoe UI",sans-serif;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 26px;max-width:640px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:6px;transition:.2s}
+.card:hover{border-color:rgba(255,122,26,.55);transform:translateY(-3px)}
+.card.me{border-color:var(--fire);box-shadow:0 0 0 1px rgba(255,122,26,.3),0 10px 30px rgba(255,90,30,.18)}
+.card .tag{position:absolute;top:12px;right:12px;font-size:11px;font-weight:700;background:var(--fire);color:#1b1614;border-radius:6px;padding:2px 8px}
+.card svg{width:38px;height:38px;fill:var(--paper)}
+.card h3{margin:6px 0 0;font-size:19px}
+.card .v{font-size:13px;color:var(--muted);min-height:20px}
+.card .go{margin-top:auto;padding-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-block;padding:8px 14px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--paper);transition:.15s}
+.btn:hover{border-color:var(--fire)}
+.btn.p{border:0;background:linear-gradient(135deg,var(--chili),var(--fire));color:#fff}
+.note{font-size:12.5px;color:var(--muted);margin-top:4px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;counter-reset:s}
+.step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 20px 20px 64px;position:relative}
+.step:before{counter-increment:s;content:counter(s);position:absolute;left:18px;top:18px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:900;color:#1b1614;background:linear-gradient(135deg,var(--gold),var(--fire))}
+.step h3{margin:0 0 4px;font-size:18px}
+.step p{margin:0;color:var(--muted);font-size:15px}
+.cmd{display:flex;align-items:center;gap:10px;margin-top:12px;padding:10px 12px;border-radius:12px;background:rgba(0,0,0,.5);border:1px solid rgba(255,122,26,.4)}
+.cmd code{flex:1;min-width:0;font:13px/1.5 Consolas,monospace;color:var(--gold);overflow-wrap:anywhere}
+.cmd button{border:0;border-radius:9px;padding:7px 12px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--chili),var(--fire));cursor:pointer}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.feat div{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
+.feat b{display:block;margin-bottom:4px;color:var(--gold)}
+.feat p{margin:0;color:var(--muted);font-size:14.5px}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:700}
+details p{color:var(--muted);margin:8px 0 0}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:14px;text-align:center}
+footer a{margin:0 8px}
+dialog{background:var(--bg2);color:var(--paper);border:1px solid var(--fire);border-radius:18px;max-width:480px;padding:24px}
+dialog::backdrop{background:rgba(0,0,0,.65)}
+dialog h3{margin-top:0}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="#"><img src="img/logo.png" alt="">Wokok<span style="color:var(--fire)">VPN</span></a>
+  <div class="sp"></div>
+  <a class="l" href="#download" data-i="nav_dl">Скачать</a>
+  <a class="l" href="#server" data-i="nav_srv">Сервер</a>
+  <a class="l" href="#faq" data-i="nav_faq">Вопросы</a>
+  <a class="l" href="https://github.com/arsenikt/WokokVPN-App">GitHub</a>
+  <button class="lang" id="lang" aria-label="Language">EN</button>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <img class="logo" src="img/logo.png" alt="Wokok VPN">
+  <h1><span data-i="h1a">Вок для</span> <span data-i="h1b">вашего трафика</span></h1>
+  <p class="sub" data-i="sub">Свой VPN на своём сервере. Выглядит как обычный HTTPS, не продаёт ваши данные и работает на всех ваших устройствах.</p>
+  <a class="cta" id="mainCta" href="#download"><span id="ctaIcon"></span><span><span id="ctaText">Скачать</span><small id="ctaSub"></small></span></a>
+  <div class="alt"><a href="#download" data-i="all_plat">Все платформы</a></div>
+  <div class="badges">
+    <span>VLESS + Reality</span><span>SSH-резерв</span><span data-i="b_smart">Умная маршрутизация</span><span>Kill switch</span><span data-i="b_oss">Открытый код · MIT</span><span data-i="b_nt">Без телеметрии</span>
+  </div>
+</div></header>
+
+<section id="download"><div class="wrap">
+  <h2 data-i="dl_h">Скачать Wokok</h2>
+  <p class="lead" data-i="dl_lead">Один сервер, один талон, все устройства. Версии подтягиваются автоматически из GitHub.</p>
+  <div class="grid" id="platforms"></div>
+</div></section>
+
+<section><div class="wrap">
+  <h2 data-i="how_h">Как это работает</h2>
+  <p class="lead" data-i="how_lead">Три шага, пять минут.</p>
+  <div class="steps">
+    <div class="step"><h3 data-i="s1h">Поднимите сервер</h3><p data-i="s1p">Любой VPS за пару долларов. Одна команда, 30 секунд, и вы получаете ссылку wokok:// с QR-кодом.</p></div>
+    <div class="step"><h3 data-i="s2h">Поставьте приложение</h3><p data-i="s2p">Выберите свою платформу выше. Сканируйте QR-талон или вставьте ссылку из буфера.</p></div>
+    <div class="step"><h3 data-i="s3h">Нажмите на вок</h3><p data-i="s3p">Вок разогрелся, трафик защищён. Банки и госсайты в умном режиме идут напрямую.</p></div>
+  </div>
+</div></section>
+
+<section id="server"><div class="wrap">
+  <h2 data-i="srv_h">Свой сервер за минуту</h2>
+  <p class="lead" data-i="srv_lead">Ubuntu, Debian, CentOS, Alma или Alpine. Запустите на сервере по SSH:</p>
+  <div class="cmd"><code id="srvCmd">curl -fsSL https://raw.githubusercontent.com/arsenikt/WokokVPN-Chrome/main/server/install.sh | sudo bash</code><button data-copy="srvCmd" data-i="copy">Копировать</button></div>
+  <p class="note" data-i="srv_note">Потеряли ссылку? На сервере: sudo wokok link. Друзьям: sudo wokok add ИМЯ.</p>
+</div></section>
+
+<section><div class="wrap">
+  <h2 data-i="f_h">Что внутри</h2>
+  <div class="feat">
+    <div><b data-i="f1h">Живая кнопка</b><p data-i="f1p">Вок остывает, разогревается и горит вместе с состоянием VPN.</p></div>
+    <div><b data-i="f2h">Умный щит</b><p data-i="f2p">Сам переключается между Reality и SSH, если один из каналов режут.</p></div>
+    <div><b data-i="f3h">Рецепты</b><p data-i="f3p">«Всё в вок», «Умный» и «Только выбранное». Маршруты под вашу задачу.</p></div>
+    <div><b data-i="f4h">Талон</b><p data-i="f4p">QR или ссылка переносят сервер с ПК на телефон и обратно, без облака.</p></div>
+    <div><b data-i="f5h">Тушение</b><p data-i="f5p">Одна кнопка стирает ключи и серверы с устройства.</p></div>
+    <div><b data-i="f6h">Нативный вид</b><p data-i="f6p">Material 3, Cupertino, боковая панель, трей и меню-бар. Везде как родное.</p></div>
+  </div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <h2 data-i="faq_h">Вопросы</h2>
+  <details><summary data-i="q1">Нужен ли аккаунт или подписка?</summary><p data-i="a1">Нет. У вас свой сервер и свои ключи. Никаких аккаунтов, телеметрии и бэкенда.</p></details>
+  <details><summary data-i="q2">Как поставить на iPhone?</summary><p data-i="a2">Сборка идёт без подписи Apple: поставьте IPA через AltStore или Sideloadly. В App Store приложения пока нет.</p></details>
+  <details><summary data-i="q3">Почему Windows ругается при установке?</summary><p data-i="a3">Сборки пока не подписаны сертификатом разработчика, поэтому SmartScreen показывает предупреждение. Проверить файл можно по SHA256SUMS в релизе.</p></details>
+  <details><summary data-i="q4">Что с Android и iOS ядром?</summary><p data-i="a4">Интерфейс готов. Нативное ядро для телефонов ещё в работе, статус смотрите в репозитории приложения.</p></details>
+</div></section>
+
+<footer><div class="wrap">
+  <a href="https://github.com/arsenikt/WokokVPN-App">App</a>·<a href="https://github.com/arsenikt/WokokVPN-Chrome">Chrome</a>·<a href="https://github.com/arsenikt/WokokVPN">Site</a>
+  <div style="margin-top:8px">MIT · <span data-i="foot">Сделано с огнём</span> 🔥</div>
+</div></footer>
+
+<dialog id="dlg"><h3 id="dlgT"></h3><p id="dlgP"></p><div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn" onclick="dlg.close()">OK</button><a class="btn p" id="dlgGo" href="#">→</a></div></dialog>
+
+<script>
+const APP="arsenikt/WokokVPN-App", EXT="arsenikt/WokokVPN-Chrome";
+const I={
+ru:{nav_dl:"Скачать",nav_srv:"Сервер",nav_faq:"Вопросы",h1a:"Вок для",h1b:"вашего трафика",sub:"Свой VPN на своём сервере. Выглядит как обычный HTTPS, не продаёт ваши данные и работает на всех ваших устройствах.",all_plat:"Все платформы",b_smart:"Умная маршрутизация",b_oss:"Открытый код · MIT",b_nt:"Без телеметрии",dl_h:"Скачать Wokok",dl_lead:"Один сервер, один талон, все устройства. Версии подтягиваются автоматически из GitHub.",how_h:"Как это работает",how_lead:"Три шага, пять минут.",s1h:"Поднимите сервер",s1p:"Любой VPS за пару долларов. Одна команда, 30 секунд, и вы получаете ссылку wokok:// с QR-кодом.",s2h:"Поставьте приложение",s2p:"Выберите свою платформу выше. Сканируйте QR-талон или вставьте ссылку из буфера.",s3h:"Нажмите на вок",s3p:"Вок разогрелся, трафик защищён. Банки и госсайты в умном режиме идут напрямую.",srv_h:"Свой сервер за минуту",srv_lead:"Ubuntu, Debian, CentOS, Alma или Alpine. Запустите на сервере по SSH:",srv_note:"Потеряли ссылку? На сервере: sudo wokok link. Друзьям: sudo wokok add ИМЯ.",copy:"Копировать",copied:"Готово",f_h:"Что внутри",f1h:"Живая кнопка",f1p:"Вок остывает, разогревается и горит вместе с состоянием VPN.",f2h:"Умный щит",f2p:"Сам переключается между Reality и SSH, если один из каналов режут.",f3h:"Рецепты",f3p:"«Всё в вок», «Умный» и «Только выбранное». Маршруты под вашу задачу.",f4h:"Талон",f4p:"QR или ссылка переносят сервер с ПК на телефон и обратно, без облака.",f5h:"Тушение",f5p:"Одна кнопка стирает ключи и серверы с устройства.",f6h:"Нативный вид",f6p:"Material 3, Cupertino, боковая панель, трей и меню-бар. Везде как родное.",faq_h:"Вопросы",q1:"Нужен ли аккаунт или подписка?",a1:"Нет. У вас свой сервер и свои ключи. Никаких аккаунтов, телеметрии и бэкенда.",q2:"Как поставить на iPhone?",a2:"Сборка идёт без подписи Apple: поставьте IPA через AltStore или Sideloadly. В App Store приложения пока нет.",q3:"Почему Windows ругается при установке?",a3:"Сборки пока не подписаны сертификатом разработчика, поэтому SmartScreen показывает предупреждение. Проверить файл можно по SHA256SUMS в релизе.",q4:"Что с Android и iOS ядром?",a4:"Интерфейс готов. Нативное ядро для телефонов ещё в работе, статус смотрите в репозитории приложения.",foot:"Сделано с огнём",
+ dl:"Скачать",dlFor:"Скачать для",soon:"Скоро",rel:"Релизы",ver:"Версия",you:"ваш выбор",ios_t:"Установка на iPhone",ios_p:"Скачайте IPA и установите через AltStore или Sideloadly. Сборка без подписи Apple.",open:"Открыть",ext_s:"Установить из релиза",build:"Сборка готовится"},
+en:{nav_dl:"Download",nav_srv:"Server",nav_faq:"FAQ",h1a:"A wok for",h1b:"your traffic",sub:"Your own VPN on your own server. Looks like ordinary HTTPS, never sells your data, works on all your devices.",all_plat:"All platforms",b_smart:"Smart routing",b_oss:"Open source · MIT",b_nt:"No telemetry",dl_h:"Get Wokok",dl_lead:"One server, one ticket, every device. Versions are pulled from GitHub automatically.",how_h:"How it works",how_lead:"Three steps, five minutes.",s1h:"Spin up a server",s1p:"Any $3 VPS. One command, 30 seconds, and you get a wokok:// link with a QR code.",s2h:"Install the app",s2p:"Pick your platform above. Scan the QR ticket or paste the link from the clipboard.",s3h:"Tap the wok",s3p:"The wok heats up, traffic is protected. Banks and gov sites go direct in Smart mode.",srv_h:"Your server in a minute",srv_lead:"Ubuntu, Debian, CentOS, Alma or Alpine. Run on the server over SSH:",srv_note:"Lost the link? On the server: sudo wokok link. For friends: sudo wokok add NAME.",copy:"Copy",copied:"Done",f_h:"What's inside",f1h:"Live button",f1p:"The wok cools, heats and blazes with your VPN state.",f2h:"Smart shield",f2p:"Auto-switches between Reality and SSH if one channel is blocked.",f3h:"Recipes",f3p:"“Everything”, “Smart” and “Selected only”. Routing for your task.",f4h:"Ticket",f4p:"A QR or link moves your server from PC to phone and back, no cloud.",f5h:"Extinguish",f5p:"One button wipes keys and servers from the device.",f6h:"Native feel",f6p:"Material 3, Cupertino, sidebar, tray and menu bar. Native everywhere.",faq_h:"FAQ",q1:"Do I need an account or subscription?",a1:"No. You own the server and the keys. No accounts, telemetry or backend.",q2:"How do I install on iPhone?",a2:"The build is unsigned: install the IPA with AltStore or Sideloadly. It is not on the App Store yet.",q3:"Why does Windows warn me?",a3:"Builds are not code-signed yet, so SmartScreen shows a warning. Verify the file with SHA256SUMS from the release.",q4:"What about the Android and iOS core?",a4:"The UI is ready. The native phone core is still in progress, see the app repository for status.",foot:"Made with fire",
+ dl:"Download",dlFor:"Download for",soon:"Soon",rel:"Releases",ver:"Version",you:"your pick",ios_t:"Installing on iPhone",ios_p:"Download the IPA and install it with AltStore or Sideloadly. The build is not Apple-signed.",open:"Open",ext_s:"Install from release",build:"Build in progress"}};
+let L=(navigator.language||"ru").startsWith("ru")?"ru":"en";
+const t=k=>I[L][k]||k;
+const ic={
+win:'<svg viewBox="0 0 24 24"><path d="M3 5.5l8-1.1v7.1H3zm9 -1.2L21 3v8.5h-9zM3 12.5h8v7.1l-8-1.1zm9 0h9V21l-9-1.3z"/></svg>',
+mac:'<svg viewBox="0 0 24 24"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9s-1.8-.8-3-.8c-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.700 2.400 2.900 2.300 1.200 0 1.600-.7 3-.7s1.800.7 3 .7c1.300 0 2.100-1.100 2.800-2.300.9-1.300 1.300-2.600 1.300-2.700-.1 0-2.500-1-2.500-3.700zM14.200 5.800c.6-.8 1.100-1.800.9-2.800-.9 0-2 .6-2.600 1.400-.6.700-1.100 1.700-.9 2.700 1 .1 2-.5 2.600-1.300z"/></svg>',
+and:'<svg viewBox="0 0 24 24"><path d="M6 18c0 .6.4 1 1 1h1v3a1.250 1.250 0 0 0 2.500 0v-3h3v3a1.250 1.250 0 0 0 2.500 0v-3h1c.6 0 1-.4 1-1V8H6zM3.500 8A1.500 1.500 0 0 0 2 9.500v6a1.500 1.500 0 0 0 3 0v-6A1.500 1.500 0 0 0 3.500 8zm17 0A1.500 1.500 0 0 0 19 9.500v6a1.500 1.500 0 0 0 3 0v-6A1.500 1.500 0 0 0 20.500 8zM15.500 2.200l1.300-1.300-.6-.6-1.500 1.500A5.900 5.900 0 0 0 12 1.200c-.8 0-1.600.2-2.300.6L8.200.3l-.6.600 1.300 1.300A5.900 5.900 0 0 0 6 7h12a5.900 5.900 0 0 0-2.500-4.800zM10 5H9V4h1zm5 0h-1V4h1z"/></svg>',
+ios:'<svg viewBox="0 0 24 24"><path d="M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm5 18.200a1.100 1.100 0 1 0 0-2.200 1.100 1.100 0 0 0 0 2.200zM7.500 4.500v12h9v-12z"/></svg>',
+chr:'<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 4.200a5.800 5.800 0 0 1 5 2.900h-5a2.900 2.900 0 0 0-2.600 1.600L7 6.500A5.800 5.800 0 0 1 12 6.200zM6.200 12c0-.8.200-1.500.5-2.200l2.500 4.300a2.900 2.900 0 0 0 2.400 1.400l-2.500 4.200A5.800 5.800 0 0 1 6.200 12zm5.800 5.800l2.500-4.300a2.900 2.900 0 0 0-.1-3h4.900c.3.800.5 1.600.5 2.500a5.800 5.800 0 0 1-7.800 4.800zM12 14.900a2.900 2.900 0 1 1 0-5.800 2.900 2.900 0 0 1 0 5.800z"/></svg>'};
+
+function detect(){
+  const u=navigator.userAgent, p=navigator.platform||"";
+  if(/iPhone|iPad|iPod/.test(u)||(p==="MacIntel"&&navigator.maxTouchPoints>1)) return "ios";
+  if(/Android/.test(u)) return "and";
+  if(/Mac/.test(p)||/Macintosh/.test(u)) return "mac";
+  if(/Win/.test(p)||/Windows/.test(u)) return "win";
+  return "chr";
+}
+const ME=detect();
+const PLATS=[
+ {id:"win",name:"Windows",repo:APP,re:/windows-x64\.zip$/,note:"Windows 10/11 · x64"},
+ {id:"mac",name:"macOS",repo:APP,re:/macos\.dmg$/,note:"Apple Silicon + Intel"},
+ {id:"and",name:"Android",repo:APP,re:/android-arm64\.apk$/,extra:[["armv7",/android-armv7\.apk$/],["x86_64",/android-x86_64\.apk$/]],note:"Android 6+ · APK"},
+ {id:"ios",name:"iOS",repo:APP,re:/ios-unsigned\.ipa$/,note:"AltStore / Sideloadly",ios:true},
+ {id:"chr",name:"Chrome",repo:EXT,re:/wokok-extension\.zip$/,note:"Chrome · Edge · Brave · Yandex"}
+];
+const rel={};
+async function getRel(repo){
+  if(rel[repo]) return rel[repo];
+  try{
+    const r=await fetch(`https://api.github.com/repos/${repo}/releases/latest`,{headers:{Accept:"application/vnd.github+json"}});
+    if(!r.ok) throw 0;
+    rel[repo]=await r.json();
+  }catch(e){rel[repo]=null}
+  return rel[repo];
+}
+function find(r,re){return r&&r.assets&&r.assets.find(a=>re.test(a.name))}
+
+async function render(){
+  document.querySelectorAll("[data-i]").forEach(e=>e.textContent=t(e.dataset.i));
+  document.querySelector("#lang").textContent=L==="ru"?"EN":"RU";
+  document.documentElement.lang=L;
+  const box=document.querySelector("#platforms");
+  box.innerHTML="";
+  const order=[...PLATS].sort((a,b)=>(b.id===ME)-(a.id===ME));
+  for(const p of order){
+    const r=await getRel(p.repo);
+    const a=find(r,p.re);
+    const url=a?a.browser_download_url:`https://github.com/${p.repo}/releases/latest`;
+    const c=document.createElement("div");
+    c.className="card"+(p.id===ME?" me":"");
+    let btns=a?`<a class="btn p" href="${url}">${t("dl")}</a>`:`<a class="btn" href="${url}">${t("rel")}</a>`;
+    if(a&&p.extra) for(const [n,re] of p.extra){const x=find(r,re); if(x) btns+=`<a class="btn" href="${x.browser_download_url}">${n}</a>`}
+    c.innerHTML=`${p.id===ME?`<span class="tag">${t("you")}</span>`:""}${ic[p.id]}<h3>${p.name}</h3><div class="v">${r?`${t("ver")} ${r.tag_name.replace(/^v/,"")}`:t("build")}</div><div class="note">${p.note}</div><div class="go">${btns}</div>`;
+    if(p.ios&&a){c.querySelector(".btn.p").addEventListener("click",e=>{e.preventDefault();dlgT.textContent=t("ios_t");dlgP.textContent=t("ios_p");dlgGo.textContent=t("dl");dlgGo.href=url;dlg.showModal()})}
+    box.appendChild(c);
+  }
+  // hero CTA
+  const me=PLATS.find(p=>p.id===ME);
+  const r=await getRel(me.repo), a=find(r,me.re);
+  const cta=document.querySelector("#mainCta");
+  document.querySelector("#ctaIcon").innerHTML=ic[ME].replace("<svg",'<svg style="width:28px;height:28px;fill:#fff;display:block"');
+  document.querySelector("#ctaText").textContent=`${t("dlFor")} ${me.name}`;
+  document.querySelector("#ctaSub").textContent=r?`${t("ver")} ${r.tag_name.replace(/^v/,"")} · ${me.note}`:me.note;
+  cta.href=a&&!me.ios?a.browser_download_url:"#download";
+}
+document.querySelector("#lang").onclick=()=>{L=L==="ru"?"en":"ru";render()};
+document.querySelectorAll("[data-copy]").forEach(b=>b.onclick=async()=>{
+  await navigator.clipboard.writeText(document.getElementById(b.dataset.copy).textContent);
+  const o=b.textContent;b.textContent=t("copied");setTimeout(()=>b.textContent=t("copy"),1400)});
+render();
+</script>
+</body>
+</html>
