@@ -1,10 +1,13 @@
 <div align="center">
 
-<img src="img/logo.png" alt="Wokok VPN" width="120">
+<img src="img/box-logo.png" alt="Wokok Box" width="120">
 
-# Wokok VPN
+# Wokok Box
 
-**Свой VPN, который не блокируется.** Сайт-хаб: <https://arsenikt.github.io/WokokVPN>
+**Одна коробка, ваш сервер.** Бывший Wokok VPN. Сайт-хаб: <https://arsenikt.github.io/WokokVPN>
+
+Свой VPN уже доступен. Tunnel, Deploy, Spy Check и Guard готовятся к версии 2.0 и ещё не выпущены.
+Названия репозиториев и файлов релиза сохраняют написание `WokokVPN`.
 
 </div>
 
@@ -14,6 +17,7 @@
 | Расширение для Chrome и установщик сервера | [WokokVPN-Chrome](https://github.com/arsenikt/WokokVPN-Chrome) |
 
 Этот репозиторий содержит только сайт (`index.html`). Версии и ссылки на файлы страница берёт сама
-из GitHub Releases обоих репозиториев, поэтому после нового релиза её править не нужно.
+из GitHub Releases обоих репозиториев, поэтому ссылки после нового релиза править не нужно.
+Пометки «ещё не выпущено» в `index.html` и этом файле статичны: после релиза 2.0 их надо убрать вручную.
 
 Ссылки: `arsenikt.github.io/WokokVPN` (хаб), `/WokokVPN-Chrome` (документация расширения).

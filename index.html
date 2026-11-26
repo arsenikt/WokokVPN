@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Wokok VPN: свой VPN, который не блокируется</title>
-<meta name="description" content="Приложения Wokok VPN для Windows, macOS, Android, iOS и расширение для Chrome. VLESS Reality, SSH-резерв, умная маршрутизация. Открытый код.">
-<meta property="og:title" content="Wokok VPN: вок для вашего трафика">
-<meta property="og:description" content="Свой VPN на своём сервере. Windows, macOS, Android, iOS, Chrome.">
+<title>Wokok Box: VPN, туннели, деплой и защита на своём сервере</title>
+<meta name="description" content="Wokok Box (бывший Wokok VPN): свой VPN уже сегодня; Tunnel, Deploy, Spy Check и Guard готовятся к версии 2.0. Открытый код.">
+<meta property="og:title" content="Wokok Box: одна коробка, ваш сервер">
+<meta property="og:description" content="Свой VPN на своём сервере. Скоро в той же коробке: туннели, деплой, проверка слежки и защита от мошенников.">
 <meta property="og:image" content="https://arsenikt.github.io/WokokVPN/img/social.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="img/logo.png">
+<link rel="icon" href="img/box-logo.png">
 <link rel="canonical" href="https://arsenikt.github.io/WokokVPN/">
 <meta name="theme-color" content="#0e0b0a">
 <style>
@@ -106,43 +106,182 @@ dialog h3{margin-top:0}
 .rv{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
 .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
+nav .links{display:flex;align-items:center;gap:16px;overflow-x:auto;white-space:nowrap;min-width:0;scrollbar-width:none}
+nav .links::-webkit-scrollbar{display:none}
+nav .brand,nav .lang{flex:none}
+nav .sp{min-width:0}
+section[id]{scroll-margin-top:60px}
+.comps{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.comps a{text-decoration:none;color:var(--paper);align-items:center;text-align:center}
+.comps img{width:110px;max-width:100%;height:auto;aspect-ratio:1}
+@media(min-width:760px){.comps{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.comps h3{margin:4px 0 0}
+.comps span{font-size:14px;color:var(--muted)}
+.comps em{margin-top:auto;font-style:normal;font-size:12px;font-weight:700;border:1px solid rgba(255,210,63,.4);color:var(--gold);border-radius:999px;padding:2px 10px}
+.comps em.on{background:var(--fire);border-color:var(--fire);color:#1b1614}
+.bh{display:flex;align-items:center;gap:24px;margin-bottom:22px}
+.bh img{width:140px;height:140px;flex:none}
+.bh .lead{margin-bottom:10px}
+.status{display:inline-block;font-size:12.5px;font-weight:700;color:var(--gold);background:rgba(255,210,63,.08);border:1px solid rgba(255,210,63,.35);border-radius:10px;padding:3px 10px}
+.warnline{padding:12px 16px;border-radius:12px;background:rgba(255,210,63,.08);border:1px solid rgba(255,210,63,.3);font-size:14.5px;margin:0 0 22px}
+section .feat+.cmd,.tbl,.parents{margin-top:16px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line)}
+th{color:var(--gold)}
+td{color:var(--muted)}
+td:first-child{color:var(--paper);font-weight:700}
+tbody tr:last-child td{border-bottom:0}
+.parents{display:flex;align-items:center;gap:24px;padding:22px;border-radius:22px;border:1px solid var(--fire);background:linear-gradient(135deg,rgba(229,52,27,.18),rgba(255,122,26,.08))}
+.parents img{width:170px;height:170px;flex:none}
+.parents h3{margin:0 0 6px;font-size:clamp(22px,3vw,28px);line-height:1.2}
+.parents p{margin:0 0 6px}
+.parents+.warnline{margin:16px 0 0}
+section .note{margin:12px 0 0}
+.parents .note{margin:4px 0 0}
+@media(max-width:600px){
+section{padding:34px 0}
+section[id]{scroll-margin-top:96px}
+nav .wrap{flex-wrap:wrap;height:auto;gap:0 12px;padding:8px 14px 0}
+nav .links{order:1;flex-basis:100%;height:40px;-webkit-mask:linear-gradient(90deg,#000 85%,transparent);mask:linear-gradient(90deg,#000 85%,transparent)}
+.comps{grid-template-columns:1fr 1fr}
+.comps a:first-child{grid-column:1/-1}
+.comps img{width:84px}
+.bh{gap:14px;align-items:flex-start}
+.bh img{width:76px;height:76px}
+.parents{flex-direction:column;text-align:center}
+th,td{padding:8px 5px;font-size:12px;hyphens:auto}
+th:first-child,td:first-child{padding-left:10px;overflow-wrap:normal}
+}
 </style>
 </head>
 <body>
 <nav><div class="wrap">
-  <a class="brand" href="#"><img src="img/logo.png" alt="">Wokok<span style="color:var(--fire)">VPN</span></a>
+  <a class="brand" href="#"><img src="img/box-logo.png" alt="">Wokok<span style="color:var(--fire)">Box</span></a>
   <div class="sp"></div>
-  <a class="l" href="#download" data-i="nav_dl">Скачать</a>
-  <a class="l" href="#screens" data-i="nav_scr">Экраны</a>
-  <a class="l" href="#guide" data-i="nav_guide">Установка</a>
-  <a class="l" href="#server" data-i="nav_srv">Сервер</a>
-  <a class="l" href="#faq" data-i="nav_faq">Вопросы</a>
-  <a class="l" href="https://github.com/arsenikt/WokokVPN-App">GitHub</a>
+  <div class="links">
+    <a class="l" href="#download" data-i="nav_dl">Скачать</a>
+    <a class="l" href="#tunnel">Tunnel</a>
+    <a class="l" href="#deploy">Deploy</a>
+    <a class="l" href="#spy">Spy Check</a>
+    <a class="l" href="#guard">Guard</a>
+    <a class="l" href="#screens" data-i="nav_scr">Экраны</a>
+    <a class="l" href="#guide" data-i="nav_guide">Установка</a>
+    <a class="l" href="#server" data-i="nav_srv">Сервер</a>
+    <a class="l" href="#faq" data-i="nav_faq">Вопросы</a>
+    <a class="l" href="https://github.com/arsenikt/WokokVPN-App">GitHub</a>
+  </div>
   <button class="lang" id="lang" aria-label="Language">EN</button>
 </div></nav>
 
 <header class="hero"><div class="wrap">
-  <img class="logo" src="img/logo.png" alt="Wokok VPN">
-  <h1><span data-i="h1a">Вок для</span> <span data-i="h1b">вашего трафика</span></h1>
-  <p class="sub" data-i="sub">Свой VPN на своём сервере. Выглядит как обычный HTTPS, не продаёт ваши данные и работает на всех ваших устройствах.</p>
+  <img class="logo" src="img/box-logo.png" alt="Wokok Box">
+  <h1><span data-i="h1a">Одна коробка,</span> <span data-i="h1b">ваш сервер</span></h1>
+  <p class="sub" data-i="sub">Wokok VPN теперь Wokok Box. Свой VPN на своём сервере уже можно скачать, а туннели, деплой, проверка слежки и защита от мошенников придут в версии 2.0. Без аккаунтов, бэкенда и телеметрии.</p>
   <a class="cta" id="mainCta" href="#download"><span id="ctaIcon"></span><span><span id="ctaText">Скачать</span><small id="ctaSub"></small></span></a>
   <div class="alt"><a href="#download" data-i="all_plat">Все платформы</a></div>
   <div class="badges">
     <span>VLESS + Reality</span><span>SSH-резерв</span><span data-i="b_smart">Умная маршрутизация</span><span>Kill switch</span><span data-i="b_oss">Открытый код · MIT</span><span data-i="b_nt">Без телеметрии</span>
   </div>
-  <div class="shot"><img src="img/hero.jpg" alt="Wokok VPN на компьютере и телефоне" width="1600" height="800" fetchpriority="high"></div>
+  <div class="shot"><img src="img/hero.jpg" alt="Экран VPN в Wokok на компьютере и телефоне" width="1600" height="800" fetchpriority="high"></div>
 </div></header>
 
 <section id="download"><div class="wrap">
   <h2 data-i="dl_h">Скачать Wokok</h2>
   <p class="lead" data-i="dl_lead">Один сервер, один талон, все устройства. Версии подтягиваются автоматически из GitHub.</p>
+  <p class="warnline" data-i="rel_note">Wokok Box 2.0 ещё не выпущен. Кнопки ниже скачивают последний релиз под прежним именем Wokok VPN: в нём есть VPN, но нет Tunnel, Deploy, Spy Check и Guard. Названия файлов остаются WokokVPN.</p>
   <div class="stats" id="stats"></div>
   <div class="grid" id="platforms"></div>
 </div></section>
 
 
+<section id="box"><div class="wrap">
+  <h2 data-i="box_h">Что в коробке</h2>
+  <p class="lead" data-i="box_lead">Пять отсеков в одном приложении. VPN уже можно скачать, остальные четыре готовятся к релизу 2.0.</p>
+  <div class="grid comps">
+    <a class="card" href="#download"><img src="img/box-vpn.png" alt="" width="384" height="384" loading="lazy"><h3>VPN</h3><span data-i="c_vpn">Свой VPN на своём сервере</span><em class="on" data-i="st_now">доступно</em></a>
+    <a class="card" href="#tunnel"><img src="img/box-tunnel.png" alt="" width="384" height="384" loading="lazy"><h3>Tunnel</h3><span data-i="c_tunnel">Свой ngrok: ссылка на localhost</span><em data-i="st_soon">в 2.0</em></a>
+    <a class="card" href="#deploy"><img src="img/box-deploy.png" alt="" width="384" height="384" loading="lazy"><h3>Deploy</h3><span data-i="c_deploy">VPS без терминала</span><em data-i="st_soon">в 2.0</em></a>
+    <a class="card" href="#spy"><img src="img/box-spy.png" alt="" width="384" height="384" loading="lazy"><h3>Spy Check</h3><span data-i="c_spy">Кто за вами следит</span><em data-i="st_soon">в 2.0</em></a>
+    <a class="card" href="#guard"><img src="img/box-guard.png" alt="" width="384" height="384" loading="lazy"><h3>Guard</h3><span data-i="c_guard">Защита от мошенников</span><em data-i="st_soon">в 2.0</em></a>
+  </div>
+</div></section>
+
+<section id="tunnel"><div class="wrap">
+  <div class="bh"><img src="img/box-tunnel.png" alt="" width="384" height="384" loading="lazy"><div>
+    <h2>Tunnel</h2>
+    <p class="lead" data-i="tunnel_lead">Свой ngrok: публичная HTTPS-ссылка на то, что запущено у вас на localhost, через ваш собственный сервер.</p>
+    <span class="status" data-i="tunnel_st">В релизе пока нет · на настоящем сервере ещё не запускался</span>
+  </div></div>
+  <div class="feat">
+    <div><b data-i="tn1h">Ссылка без своего домена</b><p data-i="tn1p">Адрес вида имя.IP-сервера.sslip.io. Свой домен тоже можно: добавьте A-запись *.домен.</p></div>
+    <div><b data-i="tn2h">Срок и пароль</b><p data-i="tn2p">Задайте, сколько живёт ссылка, закройте её паролем и покажите QR-код.</p></div>
+    <div><b data-i="tn3h">Журнал и повтор</b><p data-i="tn3p">Запросы видны вживую, вебхук можно отправить повторно из приложения.</p></div>
+    <div><b data-i="tn4h">Заметки гостей</b><p data-i="tn4p">По желанию гости оставляют замечания прямо по вашей ссылке.</p></div>
+    <div><b data-i="tn5h">Всё считает ваш компьютер</b><p data-i="tn5p">Пароль, срок, журнал и заметки обрабатываются у вас, на сервере работает только Caddy.</p></div>
+    <div><b data-i="tn6h">Рядом с VPN</b><p data-i="tn6p">Если порт 443 занят Reality, HAProxy должен поделить его между VPN и туннелем без смены талонов.</p></div>
+  </div>
+  <div class="cmd"><code>wokok-box login root@203.0.113.7<br>wokok-box share 3000 --ttl 1d --password noodles --guests</code></div>
+  <p class="note" data-i="tunnel_note">Так выглядят команды wokok-box из версии в разработке. Готовых сборок утилиты пока нет.</p>
+</div></section>
+
+<section id="deploy"><div class="wrap">
+  <div class="bh"><img src="img/box-deploy.png" alt="" width="384" height="384" loading="lazy"><div>
+    <h2>Deploy</h2>
+    <p class="lead" data-i="deploy_lead">VPS без терминала: выберите, что поставить на свой сервер, и приложение сделает остальное.</p>
+    <span class="status" data-i="deploy_st">В релизе пока нет · на настоящем сервере ещё не запускался</span>
+  </div></div>
+  <div class="feat">
+    <div><b data-i="dp1h">Проверка перед заказом</b><p data-i="dp1p">Сначала чек: что изменится на сервере и хватит ли ему ресурсов.</p></div>
+    <div><b data-i="dp2h">Что поставить</b><p data-i="dp2p">VPN, сайт из папки, ZIP или GitHub, Telegram-бота на Python или Node.js. Docker по желанию.</p></div>
+    <div><b data-i="dp3h">Автообновление с откатом</b><p data-i="dp3p">Проверка каждые 5 минут. Если новая версия не поднялась, возвращается предыдущая. Откат есть и вручную.</p></div>
+    <div><b data-i="dp4h">Доктор и рецепты</b><p data-i="dp4p">Doctor ищет, что сломалось. Витрина рецептов: fail2ban, обновления, BBR, подкачка, Uptime Kuma, заметки, файлы.</p></div>
+  </div>
+  <p class="note" data-i="deploy_note">Нужен Debian или Ubuntu, root или sudo без пароля.</p>
+</div></section>
+
+<section id="spy"><div class="wrap">
+  <div class="bh"><img src="img/box-spy.png" alt="" width="384" height="384" loading="lazy"><div>
+    <h2>Spy Check</h2>
+    <p class="lead" data-i="spy_lead">Кто за вами следит: какие приложения с кем разговаривают. Наблюдение идёт на вашем устройстве.</p>
+    <span class="status" data-i="spy_st">В релизе пока нет</span>
+  </div></div>
+  <div class="feat">
+    <div><b data-i="sp1h">Чек с оценкой</b><p data-i="sp1p">Список тех, кому уходят запросы, и оценка от A до F.</p></div>
+    <div><b data-i="sp2h">Крышка</b><p data-i="sp2p">Правила, которые блокируют выбранных получателей, пока включён VPN.</p></div>
+    <div><b data-i="sp3h">Ночной дозор и ловушка утечек</b><p data-i="sp3p">Что происходило ночью и кто отправил необычно много данных. Новые получатели вызывают оповещение.</p></div>
+  </div>
+  <div class="tbl"><table><thead><tr><th data-i="t_os">Платформа</th><th data-i="t_src">Источник</th><th data-i="t_app">Приложения</th><th data-i="t_bytes">Объём данных</th></tr></thead><tbody>
+    <tr><td>Windows</td><td data-i="netstat_dns">netstat и кэш DNS или VPN-ядро</td><td data-i="yes">да</td><td data-i="vpn_only">только с включённым VPN</td></tr>
+    <tr><td>macOS</td><td data-i="lsof">lsof или VPN-ядро</td><td data-i="yes">да</td><td data-i="vpn_only">только с включённым VPN</td></tr>
+    <tr><td>Android</td><td data-i="core">VPN-ядро</td><td data-i="yes">да</td><td data-i="yes">да</td></tr>
+    <tr><td>iOS</td><td data-i="core">VPN-ядро</td><td data-i="addr">только адреса</td><td data-i="yes">да</td></tr>
+  </tbody></table></div>
+  <p class="note" data-i="spy_note">Наблюдение работает, пока запущено приложение. «Страна» в чеке это страна владельца сервиса из офлайн-базы, а не место, где стоит сервер.</p>
+</div></section>
+
+<section id="guard"><div class="wrap">
+  <div class="bh"><img src="img/box-guard.png" alt="" width="384" height="384" loading="lazy"><div>
+    <h2>Guard</h2>
+    <p class="lead" data-i="guard_lead">Защита от мошенников: проверьте ссылку, сообщение или QR-код (камерой на телефоне и macOS). Правила работают офлайн, на русском, английском и македонском.</p>
+    <span class="status" data-i="guard_st">В релизе пока нет</span>
+  </div></div>
+  <div class="feat">
+    <div><b data-i="gd1h">Светофор с причинами</b><p data-i="gd1p">Зелёный, жёлтый или красный, с объяснением почему. Ответ можно прочитать вслух.</p></div>
+    <div><b data-i="gd2h">Спросить близких</b><p data-i="gd2p">Готовое сообщение в WhatsApp, SMS или Telegram. Отправляете его вы сами.</p></div>
+    <div><b data-i="gd3h">VPN-щит и уроки</b><p data-i="gd3p">Щит на уровне VPN и десять уроков по одной минуте.</p></div>
+    <div><b data-i="gd4h">Поделиться в Guard</b><p data-i="gd4p">На Android ссылку или сообщение можно отправить на проверку через «Поделиться».</p></div>
+  </div>
+  <div class="parents"><img src="img/box-parents.png" alt="" width="384" height="384" loading="lazy"><div>
+    <h3 data-i="par_h">Поставьте это родителям</h3>
+    <p data-i="par_p">Простой режим с крупными кнопками: проверить сообщение или ссылку, позвонить близкому человеку, включить защиту и потренироваться находить обман.</p>
+    <p class="note" data-i="par_st">Появится в Wokok Box 2.0.</p>
+  </div></div>
+  <p class="warnline" data-i="guard_note">Правила снижают риск, но не гарантируют безопасность: зелёный результат не значит, что бояться нечего.</p>
+</div></section>
+
 <section id="screens"><div class="wrap">
-  <h2 data-i="scr_h">Как выглядит</h2>
+  <h2 data-i="scr_h">Как выглядит VPN</h2>
   <p class="lead" data-i="scr_lead">Один бренд и нативная обвязка: Material 3 на Android, вкладки Cupertino на iOS, боковая панель на ПК.</p>
   <div class="phones">
     <figure><img loading="lazy" src="img/phone-home.jpg" alt="" width="390" height="800"><figcaption data-i="cap1">Вок на огне</figcaption></figure>
@@ -236,6 +375,8 @@ const G={
  ios:{ru:["Скачайте <code>WokokVPN-ios-unsigned.ipa</code>.","Установите через <a href=\"https://altstore.io\">AltStore</a> или <a href=\"https://sideloadly.io\">Sideloadly</a>.","Откройте приложение и добавьте сервер талоном."],en:["Download <code>WokokVPN-ios-unsigned.ipa</code>.","Install it with <a href=\"https://altstore.io\">AltStore</a> or <a href=\"https://sideloadly.io\">Sideloadly</a>.","Open the app and add your server with a ticket."],warn:{ru:"Внимание: VPN-ядро для iOS в разработке. Сейчас доступен только интерфейс, а для работы туннеля понадобится платный Apple Developer.",en:"Heads up: the iOS VPN core is in development. Only the interface works today, and the tunnel will need a paid Apple Developer account."}},
  chr:{ru:["Скачайте <code>wokok-extension.zip</code> и распакуйте.","Откройте <code>chrome://extensions</code> и включите <b>Режим разработчика</b>.","<b>Загрузить распакованное</b> → выберите папку расширения.","Нажмите на вок 🥡, вставьте ссылку <code>wokok://</code> и нажмите на вок."],en:["Download <code>wokok-extension.zip</code> and unzip it.","Open <code>chrome://extensions</code> and turn on <b>Developer mode</b>.","<b>Load unpacked</b> → pick the extension folder.","Click the wok 🥡, paste your <code>wokok://</code> link and tap the wok."],warn:{ru:"Установщик ПК-помощника с Xray описан на странице расширения в GitHub.",en:"The desktop helper installer with Xray is documented on the extension's GitHub page."}}
 };
+Object.assign(I.ru,{"box_h":"Что в коробке","box_lead":"Пять отсеков в одном приложении. VPN уже можно скачать, остальные четыре готовятся к релизу 2.0.","st_now":"доступно","c_vpn":"Свой VPN на своём сервере","st_soon":"в 2.0","c_tunnel":"Свой ngrok: ссылка на localhost","c_deploy":"VPS без терминала","c_spy":"Кто за вами следит","c_guard":"Защита от мошенников","tunnel_lead":"Свой ngrok: публичная HTTPS-ссылка на то, что запущено у вас на localhost, через ваш собственный сервер.","tunnel_st":"В релизе пока нет · на настоящем сервере ещё не запускался","tn1h":"Ссылка без своего домена","tn1p":"Адрес вида имя.IP-сервера.sslip.io. Свой домен тоже можно: добавьте A-запись *.домен.","tn2h":"Срок и пароль","tn2p":"Задайте, сколько живёт ссылка, закройте её паролем и покажите QR-код.","tn3h":"Журнал и повтор","tn3p":"Запросы видны вживую, вебхук можно отправить повторно из приложения.","tn4h":"Заметки гостей","tn4p":"По желанию гости оставляют замечания прямо по вашей ссылке.","tn5h":"Всё считает ваш компьютер","tn5p":"Пароль, срок, журнал и заметки обрабатываются у вас, на сервере работает только Caddy.","tn6h":"Рядом с VPN","tn6p":"Если порт 443 занят Reality, HAProxy должен поделить его между VPN и туннелем без смены талонов.","tunnel_note":"Так выглядят команды wokok-box из версии в разработке. Готовых сборок утилиты пока нет.","deploy_lead":"VPS без терминала: выберите, что поставить на свой сервер, и приложение сделает остальное.","deploy_st":"В релизе пока нет · на настоящем сервере ещё не запускался","dp1h":"Проверка перед заказом","dp1p":"Сначала чек: что изменится на сервере и хватит ли ему ресурсов.","dp2h":"Что поставить","dp2p":"VPN, сайт из папки, ZIP или GitHub, Telegram-бота на Python или Node.js. Docker по желанию.","dp3h":"Автообновление с откатом","dp3p":"Проверка каждые 5 минут. Если новая версия не поднялась, возвращается предыдущая. Откат есть и вручную.","dp4h":"Доктор и рецепты","dp4p":"Doctor ищет, что сломалось. Витрина рецептов: fail2ban, обновления, BBR, подкачка, Uptime Kuma, заметки, файлы.","deploy_note":"Нужен Debian или Ubuntu, root или sudo без пароля.","spy_lead":"Кто за вами следит: какие приложения с кем разговаривают. Наблюдение идёт на вашем устройстве.","spy_st":"В релизе пока нет","sp1h":"Чек с оценкой","sp1p":"Список тех, кому уходят запросы, и оценка от A до F.","sp2h":"Крышка","sp2p":"Правила, которые блокируют выбранных получателей, пока включён VPN.","sp3h":"Ночной дозор и ловушка утечек","sp3p":"Что происходило ночью и кто отправил необычно много данных. Новые получатели вызывают оповещение.","t_os":"Платформа","t_src":"Источник","t_app":"Приложения","t_bytes":"Объём данных","netstat_dns":"netstat и кэш DNS или VPN-ядро","lsof":"lsof или VPN-ядро","core":"VPN-ядро","yes":"да","vpn_only":"только с включённым VPN","addr":"только адреса","spy_note":"Наблюдение работает, пока запущено приложение. «Страна» в чеке это страна владельца сервиса из офлайн-базы, а не место, где стоит сервер.","guard_lead":"Защита от мошенников: проверьте ссылку, сообщение или QR-код (камерой на телефоне и macOS). Правила работают офлайн, на русском, английском и македонском.","guard_st":"В релизе пока нет","gd1h":"Светофор с причинами","gd1p":"Зелёный, жёлтый или красный, с объяснением почему. Ответ можно прочитать вслух.","gd2h":"Спросить близких","gd2p":"Готовое сообщение в WhatsApp, SMS или Telegram. Отправляете его вы сами.","gd3h":"VPN-щит и уроки","gd3p":"Щит на уровне VPN и десять уроков по одной минуте.","gd4h":"Поделиться в Guard","gd4p":"На Android ссылку или сообщение можно отправить на проверку через «Поделиться».","par_h":"Поставьте это родителям","par_p":"Простой режим с крупными кнопками: проверить сообщение или ссылку, позвонить близкому человеку, включить защиту и потренироваться находить обман.","par_st":"Появится в Wokok Box 2.0.","guard_note":"Правила снижают риск, но не гарантируют безопасность: зелёный результат не значит, что бояться нечего.","rel_note":"Wokok Box 2.0 ещё не выпущен. Кнопки ниже скачивают последний релиз под прежним именем Wokok VPN: в нём есть VPN, но нет Tunnel, Deploy, Spy Check и Guard. Названия файлов остаются WokokVPN.","h1a":"Одна коробка,","h1b":"ваш сервер","sub":"Wokok VPN теперь Wokok Box. Свой VPN на своём сервере уже можно скачать, а туннели, деплой, проверка слежки и защита от мошенников придут в версии 2.0. Без аккаунтов, бэкенда и телеметрии.","scr_h":"Как выглядит VPN"});
+Object.assign(I.en,{"box_h":"What's in the box","box_lead":"Five compartments in one app. The VPN can be downloaded today; the other four are coming in 2.0.","st_now":"available","c_vpn":"Your VPN on your server","st_soon":"in 2.0","c_tunnel":"Your own ngrok: a link to localhost","c_deploy":"A VPS without a terminal","c_spy":"Who is watching you","c_guard":"Scam protection","tunnel_lead":"Your own ngrok: a public HTTPS link to whatever runs on your localhost, through your own server.","tunnel_st":"Not released yet · not yet run on a real server","tn1h":"No domain needed","tn1p":"An address like name.server-ip.sslip.io. Your own domain works too: add a *.domain A record.","tn2h":"Lifetime and password","tn2p":"Choose how long the link lives, put a password on it and show it as a QR code.","tn3h":"Live log and replay","tn3p":"Watch requests live and replay a webhook from the app.","tn4h":"Guest notes","tn4p":"Optionally, guests leave comments right on your link.","tn5h":"Your computer does the work","tn5p":"Password, lifetime, log and notes are handled on your computer; the server only runs Caddy.","tn6h":"Next to the VPN","tn6p":"If Reality owns port 443, HAProxy is meant to share it between the VPN and the tunnel, with the same tickets.","tunnel_note":"These are the wokok-box commands from the version in development. There are no downloadable builds of it yet.","deploy_lead":"Your VPS without a terminal: pick what to put on your server and the app does the rest.","deploy_st":"Not released yet · not yet run on a real server","dp1h":"Check before you order","dp1p":"First a receipt: what will change on the server and whether it has the resources.","dp2h":"What you can deploy","dp2p":"A VPN, a site from a folder, ZIP or GitHub, or a Telegram bot in Python or Node.js. Docker is optional.","dp3h":"Auto-update with rollback","dp3p":"Checks every 5 minutes. If a new release fails, the previous one comes back. Manual rollback too.","dp4h":"Doctor and recipes","dp4p":"Doctor looks for what broke. A recipe showcase: fail2ban, updates, BBR, swap, Uptime Kuma, notes, files.","deploy_note":"Needs Debian or Ubuntu, with root or passwordless sudo.","spy_lead":"Who is watching you: which apps talk to whom. The watching happens on your device.","spy_st":"Not released yet","sp1h":"A graded receipt","sp1p":"Who receives the requests, with a grade from A to F.","sp2h":"The lid","sp2p":"Rules that block the owners you pick while the VPN is on.","sp3h":"Night watch and leak trap","sp3p":"What happened overnight and which app sent unusually much data. New owners raise an alert.","t_os":"Platform","t_src":"Source","t_app":"Per app","t_bytes":"Bytes","netstat_dns":"netstat and DNS cache, or the VPN core","lsof":"lsof, or the VPN core","core":"VPN core","yes":"yes","vpn_only":"only with the VPN on","addr":"addresses only","spy_note":"Observation runs only while the app is running. “Country” on the receipt is the owner's home country from an offline database, not where the server is.","guard_lead":"Scam protection: check a link, a message or a QR code (camera scan on phones and macOS). The rules work offline, in Russian, English and Macedonian.","guard_st":"Not released yet","gd1h":"Traffic light with reasons","gd1p":"Green, yellow or red, with an explanation. The answer can be read aloud.","gd2h":"Ask a relative","gd2p":"A prepared message for WhatsApp, SMS or Telegram. You press send yourself.","gd3h":"VPN shield and lessons","gd3p":"A shield at VPN level and ten one-minute lessons.","gd4h":"Share to Guard","gd4p":"On Android, send a link or message to be checked through the Share menu.","par_h":"Install it for your parents","par_p":"Simple mode with very large buttons: check a message or link, call someone close, turn protection on and practise spotting scams.","par_st":"Arrives with Wokok Box 2.0.","guard_note":"The rules reduce risk but guarantee nothing: a green result does not mean it is safe.","rel_note":"Wokok Box 2.0 is not released yet. The buttons below download the latest release under the old name, Wokok VPN: it has the VPN but no Tunnel, Deploy, Spy Check or Guard. File names keep the WokokVPN spelling.","h1a":"One box,","h1b":"your server","sub":"Wokok VPN is now Wokok Box. Your own VPN on your own server is ready to download; tunnels, deploys, tracking checks and scam protection arrive in 2.0. No accounts, backend or telemetry.","scr_h":"What the VPN looks like"});
 let gSel=null;
 
 const ic={
@@ -345,7 +486,7 @@ async function renderStats(){
   }catch(_){}
 }
 const io="IntersectionObserver" in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12}):null;
-function reveal(){document.querySelectorAll("section h2,.step,.feat>div,details,.shot,.gbody").forEach(e=>{if(!e.classList.contains("rv")){e.classList.add("rv");io?io.observe(e):e.classList.add("in")}})}
+function reveal(){document.querySelectorAll("section h2,.step,.feat>div,details,.shot,.gbody,.parents").forEach(e=>{if(!e.classList.contains("rv")){e.classList.add("rv");io?io.observe(e):e.classList.add("in")}})}
 document.querySelector("#lang").onclick=()=>{L=L==="ru"?"en":"ru";render()};
 document.querySelectorAll("[data-copy]").forEach(b=>b.onclick=async()=>{
   await navigator.clipboard.writeText(document.getElementById(b.dataset.copy).textContent);
